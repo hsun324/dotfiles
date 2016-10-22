@@ -1,0 +1,148 @@
+! colors
+! special
+*.foreground:   #e0e0e0
+*.background:   #202c39
+*.cursorColor:  #e0e0e0
+
+! black
+*.color0:       #152128
+*.color8:       #4b6278
+
+! red
+*.color1:       #ea5343
+*.color9:       #eb7070
+
+! green
+*.color2:       #7bb035
+*.color10:      #aedb5e
+
+! yellow
+*.color3:       #f6b439
+*.color11:      #f1c673
+
+! blue
+*.color4:       #187dcf
+*.color12:      #95b6d2
+
+! magenta
+*.color5:       #b254d1
+*.color13:      #cfafd9
+
+! cyan
+*.color6:       #0eb09b
+*.color14:      #a2d8d1
+
+! white
+*.color7:       #bfd3e3
+*.color15:      #ffffff
+
+
+! rofi
+rofi.modi:                           window,run,ssh
+rofi.combi-modi:                     run,window
+rofi.pid:                            /run/user/1000/rofi.pid
+
+rofi.opacity:                        90
+rofi.width:                          25
+rofi.lines:                          15
+rofi.columns:                        1
+rofi.fixed-num-lines:                false
+
+rofi.bw:                             1
+rofi.font:                           Envy Code R for Powerline 10
+rofi.color-enabled:                  true
+rofi.color-normal:                   #ffffff,#152128,#e0e0e0,#187dcf,#ffffff
+rofi.color-urgent:                   #ffffff,#152128,#e0e0e0,#187dcf,#ffffff
+rofi.color-active:                   #ffffff,#152128,#e0e0e0,#187dcf,#ffffff
+rofi.color-window:                   #ffffff,#263238
+rofi.fake-transparency:              false
+
+rofi.location:                       2
+rofi.yoffset:                        45
+rofi.xoffset:                        0
+rofi.padding:                        5
+rofi.sidebar-mode:                   false
+
+rofi.terminal:                       urxvtcd
+rofi.ssh-client:                     ssh
+rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
+rofi.run-command:                    {cmd}
+rofi.run-list-command:               
+rofi.run-shell-command:              {terminal} -e {cmd}
+
+rofi.disable-history:                false
+rofi.levenshtein-sort:               true
+rofi.case-sensitive:                 false
+rofi.auto-select:                    false
+rofi.parse-hosts:                    false
+rofi.lazy-filter-limit:              5000
+rofi.eh:                             1
+
+rofi.kb-primary-paste:               Control+Shift+v,Shift+Insert
+rofi.kb-secondary-paste:             Control+v,Insert
+rofi.kb-clear-line:                  Control+u
+rofi.kb-move-front:                  Control+a
+rofi.kb-move-end:                    Control+e
+rofi.kb-move-word-back:              Alt+b
+rofi.kb-move-word-forward:           Alt+f
+rofi.kb-move-char-back:              Left,Control+b
+rofi.kb-move-char-forward:           Right,Control+f
+rofi.kb-remove-word-back:            Control+Alt+h
+rofi.kb-remove-word-forward:         Control+Alt+d
+rofi.kb-remove-char-forward:         Delete,Control+d
+rofi.kb-remove-char-back:            BackSpace,Control+h
+rofi.kb-accept-entry:                Control+j,Control+m,Return,KP_Enter
+rofi.kb-accept-custom:               Control+Return
+rofi.kb-accept-entry-continue:       Shift+Return
+rofi.kb-mode-next:                   Shift+Right,Control+Tab
+rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab
+rofi.kb-toggle-case-sensitivity:     grave,dead_grave
+rofi.kb-delete-entry:                Shift+Delete
+rofi.kb-custom-1:                    Alt+1
+rofi.kb-custom-2:                    Alt+2
+rofi.kb-custom-3:                    Alt+3
+rofi.kb-custom-4:                    Alt+4
+rofi.kb-custom-5:                    Alt+5
+rofi.kb-custom-6:                    Alt+6
+rofi.kb-custom-7:                    Alt+7
+rofi.kb-custom-8:                    Alt+8
+rofi.kb-custom-9:                    Alt+9
+rofi.key-window:                     Ctrl+m
+rofi.key-run:                        Ctrl+r
+rofi.key-ssh:                        Ctrl+s
+
+! urxvt
+URxvt.depth: 32
+URxvt.background: rgba:2600/3200/3800/cccc
+URxvt.internalBorder: 3
+URxvt.borderless: false
+URxvt.borderColor: rgba:2600/3200/3800/cccc
+URxvt.cursorColor: #E91E63
+URxvt.cursorBlink: true
+URxvt.colorUL: #4A90D9
+URxvt.scrollBar: true
+URxvt.scrollBar_right: true
+URxvt.scrollBar_floating: true
+URxvt.scrollstyle: plain
+URxvt.scrollWithBuffer: true
+URxvt.scrollTtyOutput: false
+URxvt.scrollTtyKeypress: true
+Urxvt.secondaryScroll: true
+
+! transparency
+URxvt.shading: 40
+URxvt.blurRadius: 30
+
+! fonts
+URxvt.font: xft:Envy\ Code\ R\ for\ Powerline:size=10
+URxvt.boldfont: xft:Envy\ Code\ R\ for\ Powerline:size=10:style=bold
+URxvt.letterSpace: 0
+URxvt.lineSpace: 2
+
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.dpi: 96
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
