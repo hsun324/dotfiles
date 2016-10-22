@@ -1,0 +1,56 @@
+super + {_, shift +}{1-9,0}
+    bspc {desktop -f, node -d} ^{1-9,10}
+super + {comma,period}
+    bspc desktop -f {prev,next}
+
+super + {b,e}
+    bspc node @/ -{B,E}
+super + {u,i,o,p}
+    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+super + {t,y}
+    bspc node -g {locked|sticky}
+
+super + {m,h,l,j,k}
+    bspc node -f {biggest,west,east,north,south}
+super + {Left,Right,Up,Down}
+    bspc node -f {west,east,north,south}
+super + ctrl + {m,h,l,j,k}
+    bspc node -s {biggest,west,east,north,south}
+super + ctrl + {Left,Right,Up,Down}
+    bspc node -s {west,east,north,south}
+super + alt + {Left,Right,Up,Down,space}
+    bspc node -p {west,east,north,south,cancel}
+super + shift + {Left,Right}
+    bspc node @/ -R {270,90}
+super + shift + {Up,Down}
+    bspc node @/ -F {horizontal,vertical}
+
+super + q
+    bspc node -c
+
+
+super + button{1-3}
+    bspc pointer -g {move,resize_side,resize_corner}
+super + @button{1-3}
+    bspc pointer -u
+
+super + space
+    rofi -show run
+super + Return
+    urxvtcd
+
+super + F9
+    mpc prev
+super + F10
+    mpc next
+super + F8
+    mpc toggle
+super + F7
+    mpc stop
+super + F{5,6}
+    amixer set Master 1%{-,+}
+super + F3
+    amixer set Master toggle
+
+super + Escape
+    pkill -USR1 -x sxhkd

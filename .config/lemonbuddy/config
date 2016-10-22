@@ -1,0 +1,230 @@
+[settings]
+throttle-limit = 3
+throttle-ms = 60
+
+[bar/standard]
+monitor = VGA-1
+width = 100%
+height = 22
+lineheight = 2
+
+offset-x = 0
+offset-y = 0
+
+background = #cc263238
+foreground = #ffffffff
+linecolor = #ff666666
+
+bar-progress-indicator-font = 0
+font-0 = Envy Code R for Powerline:size=10;0
+
+modules-left = host bspwm title sep
+modules-center = sep mpd volume sep
+modules-right = cpu memory wired-network battery clock
+
+module-margin-left = 0
+module-margin-right = 0
+
+wm-restack = bspwm
+
+[module/host]
+type = custom/script
+exec = hostname
+
+interval = 10000
+
+format-padding = 1
+format-background = #517282
+
+[module/bspwm]
+type = internal/bspwm
+
+format = <label-state>
+
+label-empty = %name%
+label-empty-padding = 1
+label-empty-background = #293f4a
+
+label-occupied = %name%
+label-occupied-padding = 1
+label-occupied-background = #293f4a
+label-occupied-underline = #6198ad
+
+label-active = %name%
+label-active-padding = 1
+label-active-background = #405d6b
+label-active-underline = #ebad49
+
+label-urgent = %name%
+label-urgent-padding = 1
+label-urgent-background = #293f4a
+label-urgent-underline = #bd3b2d
+
+[module/title]
+type = custom/script
+exec = xtitle -s
+tail = true
+maxlen = 40
+
+format-padding = 1
+
+[module/sep]
+type = custom/text
+content = " " 
+
+[module/mpd]
+type = internal/mpd
+
+format-online = <label-song>  <bar-progress> <label-time>
+format-online-background = #cc405d6b
+format-online-padding = 1
+
+label-song-maxlen = 30
+label-song-ellipsis = true
+
+label-offline = No Song
+
+bar-progress-width = 20
+bar-progress-font = 0
+bar-progress-indicator = |
+bar-progress-indicator-foreground = #ffffffff
+bar-progress-indicator-font = 0
+bar-progress-fill = ─
+bar-progress-fill-foreground = #ffe0e0e0
+bar-progress-fill-font = 0
+bar-progress-empty = ─
+bar-progress-empty-foreground = #cc718da6
+bar-progress-empty-font = 0
+
+[module/volume]
+type = internal/volume
+
+format-volume = <bar-volume> <label-volume>
+format-volume-background = #cc405d6b
+format-volume-padding = 1
+format-muted = <bar-volume> <label-muted>
+format-muted-background = #cc405d6b
+format-muted-padding = 1
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #7bb035
+bar-volume-foreground-1 = #7bb035
+bar-volume-foreground-2 = #7bb035
+bar-volume-foreground-3 = #f1c673
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-fill = ─
+bar-volume-empty = ─
+bar-volume-empty-foreground = #cc718da6
+
+label-muted = MUTED
+label-muted-foreground = #f1c673
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+
+format = <label> <bar-load>
+format-padding = 1
+format-background = #cc335363
+
+label = CPU
+
+bar-load-width = 10
+bar-load-foreground-0 = #55aa55
+bar-load-foreground-1 = #55aa55
+bar-load-foreground-2 = #f5a70a
+bar-load-foreground-3 = #ff5555
+bar-load-gradient = false
+bar-load-indicator = |
+bar-load-fill = ─
+bar-load-empty = ─
+bar-load-empty-foreground = #cc718da6
+
+[module/memory]
+type = internal/memory
+interval = 2
+
+format = <label> <bar-used>
+format-padding = 1
+format-background = #cc355363
+
+label = RAM
+
+bar-used-width = 10
+bar-used-foreground-0 = #7bb035
+bar-used-foreground-1 = #7bb035
+bar-used-foreground-2 = #f1c673
+bar-used-foreground-3 = #eb7070
+bar-used-gradient = false
+bar-used-indicator = |
+bar-used-fill = ─
+bar-used-empty = ─
+bar-used-empty-foreground = #cc718da6
+
+[module/wired-network]
+type = internal/network
+interface = enp0s3
+interval = 5.0
+
+format-connected-padding = 1
+format-connected-background = #cc355363
+
+label-connected =  %local_ip%
+label-disconnected-foreground = #4b6278
+
+[module/battery]
+type = internal/battery
+
+adapter = AC
+battery = BAT0
+
+format-charging = <animation-charging> <label-charging>
+format-charging-padding = 1
+format-charging-background = #cc355363
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-padding = 1
+format-discharging-background = #cc355363
+format-full = <ramp-capacity> <label-full>
+format-full-padding = 1
+format-full-background = #cc355363
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = #ffa900
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+format-padding = 1
+format-background = #cc355363
+
+label = RAM
+
+bar-used-width = 10
+bar-used-foreground-0 = #7bb035
+bar-used-foreground-1 = #7bb035
+bar-used-foreground-2 = #f1c673
+bar-used-foreground-3 = #eb7070
+bar-used-gradient = false
+bar-used-indicator = |
+bar-used-fill = ─
+bar-used-empty = ─
+bar-used-empty-foreground = #bfd3e3
+
+[module/clock]
+type = internal/date
+
+format = <date>
+format-padding = 1
+format-background = #cc497185
+
+date = %a %b %d %T %Z

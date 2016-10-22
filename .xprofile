@@ -1,0 +1,9 @@
+#! /bin/sh
+
+urxvtd -q &
+sxhkd &
+mpd ~/.config/mpd/mpd.conf &
+nitrogen --restore &
+compton &
+
+sleep 2 && .config/bar/bar.sh &

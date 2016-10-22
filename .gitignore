@@ -1,0 +1,16 @@
+# Ignore all files
+/*
+
+# Specific files to include
+!.bashrc
+!.config/
+!.config/*
+!.gitignore
+!.gvimrc
+!.ncmpcpp/
+!.ncmpcpp/config
+!.profile
+!.urxvt
+!.vimrc
+!.xprofile
+!.zshrc
