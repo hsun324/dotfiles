@@ -39,17 +39,17 @@ super + space
 super + Return
     urxvtcd
 
-super + F9
+XF86AudioPrev
     mpc prev
-super + F10
+XF86AudioNext
     mpc next
-super + F8
+XF86AudioPlay
     mpc toggle
-super + F7
+XF86AudioStop
     mpc stop
-super + F{5,6}
+XF86Audio{Lower,Raise}Volume
     amixer set Master 1%{-,+}
-super + F3
+XF86AudioMute
     amixer set Master toggle
 
 super + Escape
