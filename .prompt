@@ -1,0 +1,42 @@
+#! /bin/bash
+
+__P_RESET=$(__p_quote $(tput sgr0))
+
+__P_S_TIME=$(__p_quote $(tput setab 22)$(tput setaf 15)$(tput bold))
+__P_S_TERM=$(__p_quote $(tput setab 28)$(tput setaf 15))
+__P_S_USER=$(__p_quote $(tput sgr0)$(tput setab 29)$(tput setaf 15))
+__P_S_PWDR=$(__p_quote $(tput setab 31)$(tput setaf 15))
+__P_S_GITH=$(__p_quote $(tput setab 31)$(tput setaf 45))
+
+__P_E_TIME=$(__p_quote $(tput setab 124)$(tput setaf 15)$(tput bold))
+__P_E_TERM=$(__p_quote $(tput setab 130)$(tput setaf 15))
+__P_E_USER=$(__p_quote $(tput sgr0)$(tput setab 136)$(tput setaf 15))
+__P_E_PWDR=$(__p_quote $(tput setab 137)$(tput setaf 15))
+__P_E_GITH=$(__p_quote $(tput setab 137)$(tput setaf 221))
+
+__P_C_HIST=$(__p_quote $(tput setab 15)$(tput setaf 242))
+
+__P_R_TSL=$(tput tsl)${USER}'@'${HOSTNAME}': '
+__P_R_FSL=$(tput fsl)
+
+__p_gitbranch() {
+    git status 1>/dev/null 2>&1 && printf '(%s) ' "$(git branch | sed -n '/\* /s///p' | sed 's/\((.*)\)/\1/')"
+}
+
+__p_prompt() {
+    if [[ $DEMO == "YES" ]]; then
+        if [[ $__R == 0 ]]; then
+            PS1=$__P_RESET$__P_S_PWDR' '$__P_CDIR' '$__P_S_GITH$(__p_gitbranch)$__P_RESET' '
+        else
+            PS1=$__P_RESET$__P_E_PWDR' '$__P_CDIR' '$__P_E_GITH$(__p_gitbranch)$__P_RESET' '
+        fi
+    else
+        if [[ $__R == 0 ]]; then
+            PS1=$__P_RESET$__P_S_TIME' '$__P_TIME' '$__P_S_TERM' '$__P_HOST' '$__P_S_USER' '$__P_USER' '$__P_S_PWDR' '$__P_CDIR' '$__P_S_GITH$(__p_gitbranch)$__P_RESET' '
+        else
+            PS1=$__P_RESET$__P_E_TIME' '$__P_TIME' '$__P_E_TERM' '$__P_HOST' '$__P_E_USER' '$__P_USER' '$__P_E_PWDR' '$__P_CDIR' '$__P_E_GITH$(__p_gitbranch)$__P_RESET' '
+        fi
+    fi
+
+    RPS1=$__P_C_HIST' '$__P_HIST' '$__P_RESET
+}
