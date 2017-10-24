@@ -1,11 +1,10 @@
 #! /bin/sh
 
-[ -f "~/.xlocal" ] && source ~/.xlocal
+xinput set-prop 13 284 -0.5
 
 urxvtd -q &
 sxhkd &
-mpd ~/.config/mpd/mpd.conf &
 nitrogen --restore &
 compton &
-
-sleep 2 && .config/bar/bar.sh &
+light-locker &
+(( while ! bspc wm -g; do sleep 1; done ); polybar standard ) &

@@ -11,7 +11,7 @@ set tabstop=4 shiftwidth=4
 set expandtab
 
 " automatically indent
-set autoindent startindent smarttab
+set autoindent smartindent smarttab
 
 " show line numbers and columns
 set number ruler
@@ -28,6 +28,9 @@ set guifont=Envy\ Code\ R\ for\ Powerline\ 10
 
 " better command completion
 set wildmenu
+
+" auto clipboard
+set clipboard=unnamed
 
 " pad the screen
 set scrolloff=12
@@ -61,3 +64,8 @@ let g:airline_theme='cool'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#whitespace#enabled=1
+
+" nullify certain mouse binds
+set <F13>=[25~
+map! <F13> <Nop>
+map! <F13> <Nop>

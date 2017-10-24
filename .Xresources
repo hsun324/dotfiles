@@ -37,7 +37,7 @@
 *.color15:      #ffffff
 
 ! rofi
-rofi.modi:                           window,run,ssh
+rofi.modi:                           window,drun,run,ssh
 rofi.combi-modi:                     run,window
 rofi.pid:                            /run/user/1000/rofi.pid
 
@@ -79,7 +79,6 @@ rofi.eh:                             1
 
 rofi.kb-primary-paste:               Control+Shift+v,Shift+Insert
 rofi.kb-secondary-paste:             Control+v,Insert
-rofi.kb-clear-line:                  Control+u
 rofi.kb-move-front:                  Control+a
 rofi.kb-move-end:                    Control+e
 rofi.kb-move-word-back:              Alt+b
@@ -112,10 +111,10 @@ rofi.key-ssh:                        Ctrl+s
 
 ! urxvt
 URxvt.depth: 32
-URxvt.background: rgba:2600/3200/3800/cccc
+URxvt.background: rgba:1800/2000/2400/cccc
 URxvt.internalBorder: 3
 URxvt.borderless: false
-URxvt.borderColor: rgba:2600/3200/3800/cccc
+URxvt.borderColor: rgba:1800/2000/2400/cccc
 URxvt.cursorColor: #E91E63
 URxvt.cursorBlink: true
 URxvt.colorUL: #4A90D9
@@ -133,10 +132,10 @@ URxvt.shading: 40
 URxvt.blurRadius: 30
 
 ! fonts
-URxvt.font: xft:Envy\ Code\ R\ for\ Powerline:size=10
+URxvt.font: xft:Envy\ Code\ R\ for\ Powerline:size=10,xft:Courier\ New:size=10
 URxvt.boldfont: xft:Envy\ Code\ R\ for\ Powerline:size=10:style=bold
 URxvt.letterSpace: 0
-URxvt.lineSpace: 2
+URxvt.lineSpace: -1
 
 Xft.antialias: 1
 Xft.autohint: 0

@@ -16,3 +16,8 @@ bspc config initial_polarity second_child
 
 bspc config focus_follows_pointer true
 bspc config click_to_focus true
+
+bspc rule -a Google-chrome desktop=1
+bspc rule -a Qemu-system-i386 state=floating desktop=8
+bspc rule -a Qemu state=floating desktop=8
+bspc rule -a Keepassx2 desktop=9
