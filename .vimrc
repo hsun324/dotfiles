@@ -5,28 +5,24 @@ syntax on
 filetype plugin indent on
 
 " set tab width to 4 spaces
-set tabstop=4 shiftwidth=4
+set softtabstop=4 tabstop=8 shiftwidth=4 expandtab
 
-" use spaces instead of tabs
-set expandtab
-
-" automatically indent
+" autoindent
 set autoindent smartindent smarttab
 
-" show line numbers and columns
+" show ruler
 set number ruler
 
 " normal backspace
 set backspace=indent,eol,start
 
-" disable bell and visual bell
+" disable bell
 set vb t_vb=""
 
-" terminal uses a dark colorscheme
+" terminal uses dark
 set bg=dark
-set guifont=Envy\ Code\ R\ for\ Powerline\ 10
 
-" better command completion
+" menu completion
 set wildmenu
 
 " auto clipboard
@@ -36,7 +32,7 @@ set clipboard=unnamed
 set scrolloff=12
 
 " show current line and max col indicators
-set cursorline colorcolumn=81
+set cursorline colorcolumn=101
 
 " enable mouse support
 set mouse=a
@@ -44,11 +40,38 @@ set mouse=a
 " use highlight + smart search
 set hlsearch ignorecase smartcase
 
-" add extra space at bottom of screen
-set laststatus=2
+" add extra space at bottom of screen and show command
+set laststatus=2 showcmd
+
+" make timeout 250ms and ttimeout 50ms
+set timeoutlen=250 ttimeoutlen=50
 
 " aliases
 cnoreabbrev fle s/\s\+$//
+
+" easier to access exit insert mode
+inoremap <S-CR> <Esc>
+inoremap jj <Esc>
+
+" don't yank on <Delete>
+noremap <Delete> "_x
+
+" set the leader to be <Space>
+" here bind <Space> instead of directly setting leader so that showcmd displays a \
+let mapleader = "\\"
+nmap <Space> \
+vmap <Space> \
+
+" binding for indentation
+function <SID>PerformIndentation(c, char) range
+    let op = getpos('.')
+    for line in range(a:firstline, a:lastline)
+        execute "normal! ".line."gg0f".a:char.a:c."i \<Esc>d".a:c."|<CR>"
+    endfor
+    call setpos('.', op)
+endfunction
+nnoremap <expr> <Leader>, ':<C-U>call <SID>PerformIndentation(v:count, nr2char(getchar()))<CR>'
+vnoremap <expr> <Leader>, ':call <SID>PerformIndentation(v:count, nr2char(getchar()))<CR>'
 
 " titlebar
 autocmd BufEnter * let &titlestring = $USER . '@' . hostname() . ': editing ' . expand('%')
@@ -65,7 +88,13 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#whitespace#enabled=1
 
-" nullify certain mouse binds
+" nullify certain mouse buttons
 set <F13>=[25~
+set <F14>=[26~
+set <F15>=[27~
+set <F16>=[28~
+
 map! <F13> <Nop>
-map! <F13> <Nop>
+map! <F14> <Nop>
+map! <F15> <Nop>
+map! <F16> <Nop>
