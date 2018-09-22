@@ -1,6 +1,11 @@
 set nocompatible
 set enc=utf-8
 
+" fix file path for windows
+if has('win32') || has('win64')
+    set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+endif
+
 syntax on
 filetype plugin indent on
 
@@ -98,3 +103,10 @@ map! <F13> <Nop>
 map! <F14> <Nop>
 map! <F15> <Nop>
 map! <F16> <Nop>
+
+" options for gVim
+if has("gui_running")
+    set guifont=Envy\ Code\ R\ for\ Powerline:h10
+    colorscheme solarized
+    let g:airline_theme = 'solarized'
+endif

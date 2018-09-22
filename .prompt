@@ -1,20 +1,63 @@
 #! /bin/bash
 
-__P_RESET=$(__p_quote $(tput sgr0))
+if [ ! -z "$BASH" ]; then
+    function __p_quote() {
+        printf '\[%s\]' "$@"
+    }
 
-__P_S_TIME=$(__p_quote $(tput setab 22)$(tput setaf 15)$(tput bold))
-__P_S_TERM=$(__p_quote $(tput setab 28)$(tput setaf 15))
-__P_S_USER=$(__p_quote $(tput sgr0)$(tput setab 29)$(tput setaf 15))
-__P_S_PWDR=$(__p_quote $(tput setab 31)$(tput setaf 15))
-__P_S_GITH=$(__p_quote $(tput setab 31)$(tput setaf 45))
+    __P_TIME='\A'
+    __P_HOST='\h'
+    __P_USER='\u'
+    __P_CDIR='\w'
+    __P_HIST='\!'
 
-__P_E_TIME=$(__p_quote $(tput setab 124)$(tput setaf 15)$(tput bold))
-__P_E_TERM=$(__p_quote $(tput setab 130)$(tput setaf 15))
-__P_E_USER=$(__p_quote $(tput sgr0)$(tput setab 136)$(tput setaf 15))
-__P_E_PWDR=$(__p_quote $(tput setab 137)$(tput setaf 15))
-__P_E_GITH=$(__p_quote $(tput setab 137)$(tput setaf 221))
+    PROMPT_COMMAND=__p_prompt
+elif [ ! -z "$ZSH_VERSION" ]; then
+    function __p_quote() {
+        printf '%%{%s%%}' "$@"
+    }
 
-__P_C_HIST=$(__p_quote $(tput setab 15)$(tput setaf 242))
+    __P_TIME='%T'
+    __P_HOST='%m'
+    __P_USER='%n'
+    __P_CDIR='%~'
+    __P_HIST='%!'
+
+    function precmd() {
+        __p_prompt
+    }
+else
+    echo "unrecognized shell: $0" 1>&2
+fi
+
+function __p_quote_fhd() {
+    __p_quote $1
+    echo -n $'\xEE\x82\xB0'
+    __p_quote $2
+}
+
+function __p_quote_bhd() {
+    __p_quote $1
+    echo -n $'\xEE\x82\xB2'
+    __p_quote $2
+}
+
+__P_S_TIME=$(__p_quote                 $(tput setab 22)$(tput setaf 15)$(tput bold))
+__P_S_TERM=$(__p_quote_fhd             $(tput setab 28)$(tput setaf 22) $(tput setaf 15))
+__P_S_USER=$(__p_quote_fhd $(tput sgr0)$(tput setab 29)$(tput setaf 28) $(tput setaf 15))
+__P_S_PWDR=$(__p_quote_fhd             $(tput setab 31)$(tput setaf 29) $(tput setaf 15))
+__P_S_GITH=$(__p_quote                 $(tput setab 31)$(tput setaf 45))
+__P_S_REST=$(__p_quote_fhd             $(tput sgr0)$(tput setaf 31) $(tput sgr0))
+
+__P_E_TIME=$(__p_quote                 $(tput setab 124)$(tput setaf 15)$(tput bold))
+__P_E_TERM=$(__p_quote_fhd             $(tput setab 130)$(tput setaf 124) $(tput setaf 15))
+__P_E_USER=$(__p_quote_fhd $(tput sgr0)$(tput setab 136)$(tput setaf 130) $(tput setaf 15))
+__P_E_PWDR=$(__p_quote_fhd             $(tput setab 137)$(tput setaf 136) $(tput setaf 15))
+__P_E_GITH=$(__p_quote                 $(tput setab 137)$(tput setaf 221))
+__P_E_REST=$(__p_quote_fhd             $(tput sgr0)$(tput setaf 137) $(tput sgr0))
+
+__P_C_HIST=$(__p_quote_bhd $(tput setaf 15) $(tput setab 15)$(tput setaf 242))
+__P_C_REST=$(__p_quote     $(tput sgr0))
 
 __P_R_TSL=$(tput tsl)${USER}'@'${HOSTNAME}': '
 __P_R_FSL=$(tput fsl)
@@ -24,6 +67,7 @@ __p_gitbranch() {
 }
 
 __p_prompt() {
+    __R=$?
     if [[ $DEMO == "YES" ]]; then
         if [[ $__R == 0 ]]; then
             PS1=$__P_RESET$__P_S_PWDR' '$__P_CDIR' '$__P_S_GITH$(__p_gitbranch)$__P_RESET' '
@@ -32,11 +76,11 @@ __p_prompt() {
         fi
     else
         if [[ $__R == 0 ]]; then
-            PS1=$__P_RESET$__P_S_TIME' '$__P_TIME' '$__P_S_TERM' '$__P_HOST' '$__P_S_USER' '$__P_USER' '$__P_S_PWDR' '$__P_CDIR' '$__P_S_GITH$(__p_gitbranch)$__P_RESET' '
+            PS1=$__P_RESET$__P_S_TIME' '$__P_TIME' '$__P_S_TERM' '$__P_HOST' '$__P_S_USER' '$__P_USER' '$__P_S_PWDR' '$__P_CDIR' '$__P_S_GITH$(__p_gitbranch)$__P_S_REST' '
         else
-            PS1=$__P_RESET$__P_E_TIME' '$__P_TIME' '$__P_E_TERM' '$__P_HOST' '$__P_E_USER' '$__P_USER' '$__P_E_PWDR' '$__P_CDIR' '$__P_E_GITH$(__p_gitbranch)$__P_RESET' '
+            PS1=$__P_RESET$__P_E_TIME' '$__P_TIME' '$__P_E_TERM' '$__P_HOST' '$__P_E_USER' '$__P_USER' '$__P_E_PWDR' '$__P_CDIR' '$__P_E_GITH$(__p_gitbranch)$__P_E_REST' '
         fi
     fi
 
-    RPS1=$__P_C_HIST' '$__P_HIST' '$__P_RESET
+    RPS1=$__P_C_HIST' '$__P_HIST' '$__P_C_REST
 }
