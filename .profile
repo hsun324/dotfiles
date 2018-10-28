@@ -41,3 +41,8 @@ alias jq="jq -M"
 
 # memes
 alias wat="show_image ~/.memes/wat.jpg"
+
+# local profile
+if [ -f ~/.profile.local ]; then
+    source ~/.profile.local
+fi

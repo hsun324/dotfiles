@@ -37,7 +37,7 @@ set clipboard=unnamed
 set scrolloff=12
 
 " show current line and max col indicators
-set cursorline colorcolumn=101
+set cursorline colorcolumn=81
 
 " enable mouse support
 set mouse=a
