@@ -13,7 +13,7 @@ export ZSH=/usr/share/oh-my-zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git)
 
 [[ $- == *i* ]] && source $ZSH/oh-my-zsh.sh 
 [[ $- == *i* ]] && source $HOME/.profile
@@ -111,4 +111,5 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_host dir vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
