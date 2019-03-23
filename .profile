@@ -25,7 +25,7 @@ export GDBMACROS="~/.gdb"
 # command aliases
 
 # aliases for ls
-alias ls="LC_COLLATE=C ls --color=tty"
+alias ls="LC_COLLATE=C ls --color=tty --group-directories-first"
 alias l="ls -ghlp"
 alias ll="l -A"
 

@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+export DISPLAY=:0
+export LIBGL_ALWAYS_INDIRECT=1
+export SHELL=/bin/zsh
+
+if ! pgrep supervisord &>/dev/null; then
+    sudo supervisord
+    xrdb -merge ~/.Xresources
+fi
+
+cd ~
+nohup urxvtcd -e zsh &>/dev/null

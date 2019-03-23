@@ -10,7 +10,7 @@ syntax on
 filetype plugin indent on
 
 " set tab width to 4 spaces
-set softtabstop=4 tabstop=8 shiftwidth=4 expandtab
+set softtabstop=4 tabstop=4 shiftwidth=4 expandtab
 
 " autoindent
 set autoindent smartindent smarttab
@@ -61,6 +61,9 @@ inoremap jj <Esc>
 " don't yank on <Delete>
 noremap <Delete> "_x
 
+" use full tabs in Makefiles
+autocmd FileType make setlocal noexpandtab
+
 " set the leader to be <Space>
 " here bind <Space> instead of directly setting leader so that showcmd displays a \
 let mapleader = "\\"
@@ -98,15 +101,19 @@ set <F13>=[25~
 set <F14>=[26~
 set <F15>=[27~
 set <F16>=[28~
+set <F19>=OM
 
+
+map! <F9> <Nop>
 map! <F13> <Nop>
 map! <F14> <Nop>
 map! <F15> <Nop>
 map! <F16> <Nop>
+map! <F19> <Nop>
 
 " options for gVim
+set guifont=Envy\ Code\ R\ for\ Powerline\ 10
 if has("gui_running")
-    set guifont=Envy\ Code\ R\ for\ Powerline:h10
     colorscheme solarized
     let g:airline_theme = 'solarized'
 endif

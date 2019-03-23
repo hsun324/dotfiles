@@ -15,6 +15,8 @@ if [ ! -z "$BASH" ]; then
     __P_CDIR='\w'
     __P_HIST='\!'
 
+    __P_READ_FLAG='-a'
+
     PROMPT_COMMAND=__p_prompt
 elif [ ! -z "$ZSH_VERSION" ]; then
     function __p_quote() {
@@ -26,6 +28,8 @@ elif [ ! -z "$ZSH_VERSION" ]; then
     __P_USER='%n'
     __P_CDIR='%~'
     __P_HIST='%!'
+
+    __P_READ_FLAG='-A'
 
     function precmd() {
         __p_prompt
@@ -75,7 +79,22 @@ __P_R_TSL=$(tput tsl)${USER}'@'${HOSTNAME}': '
 __P_R_FSL=$(tput fsl)
 
 __p_gitbranch() {
-    git status 1>/dev/null 2>&1 && printf '(%s) ' "$(git branch | sed -n '/\* /s///p' | sed 's/\((.*)\)/\1/')"
+    git log -n 1 --pretty=%D HEAD 2>/dev/null \
+            | tr -d , \
+            | read $__P_READ_FLAG __p_LINE \
+        || return
+
+    if [ "${__p_LINE[2]}" = "->" ]; then
+        echo -n "(${__p_LINE[3]}) "
+    elif [ -z "${__p_LINE[2]}" ]; then
+        echo -n "(HEAD detached at $(git rev-parse --short HEAD)) "
+    else
+        echo -n "(HEAD detached at ${__p_LINE[2]}) "
+    fi
+
+    # timeout 0.25s git status -uno 1>/dev/null 2>&1 \
+    #     && printf '(%s) ' "$(git branch | sed -n '/\* /s///p' | sed 's/\((.*)\)/\1/')"
+    # [ $? -eq 124 ] && echo -n '(timed out) '
 }
 
 __p_prompt() {
